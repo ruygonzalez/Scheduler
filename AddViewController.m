@@ -13,14 +13,23 @@
 @property (weak, nonatomic) IBOutlet UISlider *prioritySlider;
 @property (weak, nonatomic) IBOutlet UILabel *sliderlabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datepicker;
+@property (weak, nonatomic) IBOutlet UITextView *descriptiontext;
+@property (nonatomic, strong) NSString *inputtext;
+@property (nonatomic, strong) NSDate *inputdate;
+@property (nonatomic, strong) NSNumber *inputnum;
 
 @end
 
 @implementation AddViewController
 
+// set default values for post
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.inputtext = @"";
+    self.inputnum = @(50);
+    self.inputdate = self.datepicker.date;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,16 +42,26 @@
     [self.view endEditing:YES];
 }
 
+// save date when date is changed
+- (IBAction)datechanged:(id)sender {
+    self.inputdate = self.datepicker.date;
+}
+
 // change value displayed when slider moved
 - (IBAction)onSliderMoved:(id)sender {
     self.sliderlabel.text = [NSString stringWithFormat:@"%d", (int) self.prioritySlider.value];
+    self.inputnum = @((int)self.prioritySlider.value);
 }
 
+// create Post and save to parse when submit button is pressed, then return to previous view
 - (IBAction)submit:(id)sender {
     Post *post = [Post new];
     post.postID = @"PostID";
     post.userID = @"userID";
-    post.description = @"description";
+    NSString *textValue = [NSString stringWithFormat:@"%@", _descriptiontext.text];
+    post.description = textValue;
+    post.priority = self.inputnum;
+    post.duedate = self.inputdate;
     
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {

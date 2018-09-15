@@ -12,5 +12,7 @@
     @property (nonatomic, strong) NSString *postID;
     @property (nonatomic, strong) NSString *userID;
     @property (nonatomic, strong) NSString *description;
+    @property (nonatomic, strong) NSDate *duedate;
+    @property (nonatomic, strong) NSNumber *priority;
 
 @end

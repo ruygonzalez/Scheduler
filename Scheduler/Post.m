@@ -13,6 +13,8 @@
     @dynamic postID;
     @dynamic userID;
     @dynamic description;
+    @dynamic duedate;
+    @dynamic priority;
 
     + (nonnull NSString *)parseClassName {
         return @"Post";
