@@ -10,6 +10,8 @@
 
 @interface AddViewController ()
 @property (weak, nonatomic) IBOutlet UISlider *prioritySlider;
+@property (weak, nonatomic) IBOutlet UILabel *sliderlabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -24,8 +26,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// remove keyboard when done typing and screen touched
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];
+}
+
+// change value displayed when slider moved
+- (IBAction)onSliderMoved:(id)sender {
+    self.sliderlabel.text = [NSString stringWithFormat:@"%d", (int) self.prioritySlider.value];
+}
+
+- (IBAction)submit:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
