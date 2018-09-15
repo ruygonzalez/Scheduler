@@ -20,6 +20,7 @@
 		A31F0DB9214B307C00BA4C55 /* SchedulerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A31F0DB8214B307C00BA4C55 /* SchedulerUITests.m */; };
 		A373DD03214D728500306446 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A373DD02214D728500306446 /* Podfile */; };
 		A373DD06214DA8AA00306446 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A373DD05214DA8AA00306446 /* Post.m */; };
+		A373DD09214DC9C600306446 /* PendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A373DD08214DC9C600306446 /* PendingViewController.m */; };
 		A393C37C214C22C200D4BCAB /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A393C37B214C22C200D4BCAB /* AddViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		A373DD02214D728500306446 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A373DD04214DA8AA00306446 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		A373DD05214DA8AA00306446 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		A373DD07214DC9C600306446 /* PendingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PendingViewController.h; sourceTree = "<group>"; };
+		A373DD08214DC9C600306446 /* PendingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PendingViewController.m; sourceTree = "<group>"; };
 		A393C37A214C22C200D4BCAB /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		A393C37B214C22C200D4BCAB /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +166,8 @@
 				A31F0D9F214B307C00BA4C55 /* LaunchScreen.storyboard */,
 				A31F0DA2214B307C00BA4C55 /* Info.plist */,
 				A31F0DA3214B307C00BA4C55 /* main.m */,
+				A373DD07214DC9C600306446 /* PendingViewController.h */,
+				A373DD08214DC9C600306446 /* PendingViewController.m */,
 			);
 			path = Scheduler;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			files = (
 				A373DD06214DA8AA00306446 /* Post.m in Sources */,
 				A31F0D99214B307C00BA4C55 /* ViewController.m in Sources */,
+				A373DD09214DC9C600306446 /* PendingViewController.m in Sources */,
 				A31F0DA4214B307C00BA4C55 /* main.m in Sources */,
 				A393C37C214C22C200D4BCAB /* AddViewController.m in Sources */,
 				A31F0D96214B307C00BA4C55 /* AppDelegate.m in Sources */,
