@@ -7,6 +7,7 @@
 //
 
 #import "AddViewController.h"
+#import "Post.h"
 
 @interface AddViewController ()
 @property (weak, nonatomic) IBOutlet UISlider *prioritySlider;
@@ -38,6 +39,20 @@
 }
 
 - (IBAction)submit:(id)sender {
+    Post *post = [Post new];
+    post.postID = @"PostID";
+    post.userID = @"userID";
+    post.description = @"description";
+    
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // The object has been saved.
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
