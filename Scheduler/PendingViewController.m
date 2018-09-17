@@ -24,8 +24,9 @@ NSArray *data;
     // Do any additional setup after loading the view.
     data = @[@"One", @"Two", @"Three"];
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 185;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 117;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = 117;
     // implement reuse cells
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
@@ -47,6 +48,11 @@ NSArray *data;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return 117;
 }
 
 /*
