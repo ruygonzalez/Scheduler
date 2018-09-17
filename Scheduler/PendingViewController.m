@@ -7,6 +7,7 @@
 //
 
 #import "PendingViewController.h"
+#import "TaskTableViewCell.h"
 
 @interface PendingViewController ()
 
@@ -16,20 +17,27 @@
 
 // array with object data to be displayed in table
 NSArray *data;
-NSString *CellIdentifier = @"identifier";
+//NSString *CellIdentifier = @"identifiercustom";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     data = @[@"One", @"Two", @"Three"];
     self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 185;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     // implement reuse cells
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = data[indexPath.row];
+    TaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifiercustom" forIndexPath:indexPath];
+    cell.descriptiontv.text = @"ayy";
+    cell.datelabel.text = @"January 12";
+    cell.prioritylabel.text = @"99";
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    cell.textLabel.text = data[indexPath.row];
     return cell;
 }
 
