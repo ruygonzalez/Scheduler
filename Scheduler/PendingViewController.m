@@ -11,6 +11,8 @@
 #import "Post.h"
 
 @interface PendingViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tasktableview;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -23,6 +25,11 @@ NSMutableArray *data;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Pull to refresh
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.tasktableview addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     // do a parse query for data
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
@@ -55,7 +62,12 @@ NSMutableArray *data;
     NSLog(@"post about to be accessed");
     Post *post = data[indexPath.row];
     NSLog(@"Cell being generated");
-    cell.descriptiontv.text = post.description;
+    //cell.descriptiontv.text = post.description;
+    NSArray *components = [post.description componentsSeparatedByString:@"\""];
+    if (components.count > 1)
+    {
+        cell.descriptiontv.text = components[1];
+    }
     NSTimeInterval numberOfSecondsUntilSelectedDate = [post.duedate timeIntervalSinceNow];
     if(numberOfSecondsUntilSelectedDate <= 0)
         cell.datelabel.text = @"Overdue!";
@@ -75,6 +87,35 @@ NSMutableArray *data;
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 //    cell.textLabel.text = data[indexPath.row];
     return cell;
+}
+
+// Refresh function
+- (void)refreshTable {
+    //TODO: refresh your data
+    
+    // do a parse query for data
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    //fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
+        if(posts != nil){
+            data = [NSMutableArray arrayWithArray:posts];
+            //data = [data arrayByAddingObjectsFromArray: posts];
+            NSLog(@"%d", posts.count);
+            NSLog(@"%d", data.count);
+            NSLog(@"query returned posts");
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+    
+    //data = @[@"One", @"Two", @"Three"];
+    self.tableView.dataSource = self;
+    
+    
+    [self.refreshControl endRefreshing];
+    [self.tasktableview reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
